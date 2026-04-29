@@ -17,7 +17,9 @@ class ProductProduct(models.Model):
         limit=None,
         order=None,
     ):
-        if self.env.context.get("use_only_supplied_product"):
+        if self.env.context.get("use_only_supplied_product") and self.env.context.get(
+            "active_test", True
+        ):
             restrict_supplier_id = self.env.context.get("restrict_supplier_id")
             seller = (
                 self.env["res.partner"]
